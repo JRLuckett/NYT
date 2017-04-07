@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Results from './children/Results'
+import Results from './Results'
 
 export default {
   components: {
@@ -26,8 +26,8 @@ export default {
         article: this.article,
         start: this.start,
         end: this.end,
-        this.$store.dispatch('searchURL', queryParams)
       }
+        this.$store.dispatch('searchURL', queryParams)
     }
   }
 }

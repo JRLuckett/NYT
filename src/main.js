@@ -1,31 +1,24 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import ApolloClient, { createNetworkInterface, addTypename } from 'apollo-client'
+import App from './App.vue'
+import ApolloClient, { createNetworkInterface } from 'apollo-client'
 import VueApollo from 'vue-apollo'
-import App from './App'
-// Create the apollo client
+
+// connect to GraphQL project
+const networkInterface = createNetworkInterface({
+  uri: 'https://api.graph.cool/simple/v1/cj187ja3m4qfb01528vvlqzpj'
+})
+
 const apolloClient = new ApolloClient({
-  networkInterface: createNetworkInterface({
-    uri: 'http://localhost:8080/graphql',
-    transportBatching: true
-  }),
-  queryTransformer: addTypename,
-  dataIdFromObject: r => r.id
+  networkInterface
 })
 
 // Install the vue plugin
-// With the apollo client instance
 Vue.use(VueApollo, {
   apolloClient
 })
 
-// Vue.config.productionTip = false
-
-/* eslint-disable no-new */
+// Start the app
 new Vue({
   el: '#app',
   render: h => h(App)
-  // template: '<App/>',
-  // components: { App }
 })
